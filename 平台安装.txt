@@ -1,0 +1,19 @@
+运行pg
+docker run \
+        --name db \
+        --network test \
+        -v /data/postgresql:/var/lib/postgresql/data \
+        -e POSTGRES_USER=sonar \
+        -e POSTGRES_PASSWORD=sonar \
+        -d \
+        postgres
+运行sq
+docker run \
+        --name sq \
+        --network test \
+        -e SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar \
+        -p 9000:9000 \
+        -d \
+        sonarqube
+访问
+http:*****:9000 账号密码 admin
